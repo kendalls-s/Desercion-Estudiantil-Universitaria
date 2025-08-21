@@ -1,0 +1,49 @@
+CREATE DATABASE Datos_Universidades;
+GO
+
+USE Datos_Universidades;
+GO
+
+CREATE TABLE matriculados (
+    ANO INT,
+    UNIVERSIDAD NVARCHAR(200),
+    CARRERA NVARCHAR(300),
+    GRADO_ACADEMICO NVARCHAR(200),
+    NIVEL_ACADEMICO NVARCHAR(200),
+    EDAD NVarchar(200)
+);
+
+CREATE TABLE graduados (
+    ANO INT,
+    SECTOR_UNIVERSITARIO NVARCHAR(100),
+    UNIVERSIDAD NVARCHAR(200),
+    GAM_SEDE NVARCHAR(200),
+    SEDE_CONARE NVARCHAR(200),
+    CARRERA NVARCHAR(300),
+    GRADO_ACADEMICO NVARCHAR(50),
+    NIVEL_ACADEMICO NVARCHAR(50),
+    CANTON_GRADUADO NVARCHAR(100),
+    ZONA_DE_URBANIZACION_GRADUADO NVARCHAR(50),
+    ZONA_URBANO_RURAL_GRADUADO NVARCHAR(50),
+    REGION_PLANIFICACION_GRADUADO NVARCHAR(50),
+    GAM_ESTUDIANTE NVARCHAR(50)
+);
+
+BULK INSERT matriculados
+FROM 'C:\Users\kenda\OneDrive\CUC\Cuatri 4\BD\Progra_2\Proyecto_final\Proyecto_educacion\data\processed\Matriculados.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001'  -- Para UTF-8
+);
+
+BULK INSERT graduados
+FROM 'C:\Users\kenda\OneDrive\CUC\Cuatri 4\BD\Progra_2\Proyecto_final\Proyecto_educacion\data\processed\Graduados.csv'
+WITH (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n',
+    CODEPAGE = '65001'
+);
+
